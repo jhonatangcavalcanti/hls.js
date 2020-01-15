@@ -15,6 +15,6 @@ coverage/
 .idea/*
 
 # Build
-/dist
+# /dist
 /netlify
 /api-docs
