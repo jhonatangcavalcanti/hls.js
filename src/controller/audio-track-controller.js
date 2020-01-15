@@ -91,6 +91,7 @@ class AudioTrackController extends TaskLoop {
   onManifestParsed (data) {
     const tracks = this.tracks = data.audioTracks || [];
     this.hls.trigger(Event.AUDIO_TRACKS_UPDATED, { audioTracks: tracks });
+    this._selectInitialAudioTrack();
   }
 
   /**
