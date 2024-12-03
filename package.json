@@ -31,7 +31,6 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rollup --config && npm run build:types",
     "build:ci": "rollup --config && tsc --build tsconfig-lib.json && api-extractor run && es-check",
     "build:debug": "rollup --config --configType full --configType demo",
     "build:watch": "rollup --config --configType full --configType demo --watch",
@@ -57,8 +56,7 @@
     "test:func:light": "BABEL_ENV=development HLSJS_LIGHT=1 mocha --require @babel/register tests/functional/auto/setup.js --timeout 40000 --exit",
     "test:func:sauce": "SAUCE=1 UA=safari OS='OS X 10.15' BABEL_ENV=development mocha --require @babel/register tests/functional/auto/setup.js --timeout 40000 --exit",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
-    "prepare": "husky install"
+    "type-check:watch": "npm run type-check -- --watch"
   },
   "devDependencies": {
     "@babel/core": "7.23.7",
