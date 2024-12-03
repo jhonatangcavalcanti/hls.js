@@ -256,10 +256,8 @@ function isInvalidInitPts(
   if (initPTS === null) {
     return true;
   }
-  // InitPTS is invalid when distance from program would be more than segment duration or a minimum of one second
-  const minDuration = Math.max(duration, 1);
-  const startTime = startDTS - initPTS.baseTime / initPTS.timescale;
-  return Math.abs(startTime - timeOffset) > minDuration;
+  // disable this behavior to avoid lip-sync problem in low latency media
+  return false
 }
 
 function getParsedTrackCodec(

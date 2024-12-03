@@ -552,7 +552,7 @@
       // Some browsers don't allow to use bind on console object anyway
       // fallback to default if needed
       try {
-        exportedLogger.log("Debug logs enabled for \"" + id + "\" in hls.js version " + "1.5.14");
+        exportedLogger.log("Debug logs enabled for \"" + id + "\" in hls.js version " + "1.5.14-avoid-ll-hls-lipsync");
       } catch (e) {
         exportedLogger = fakeLogger;
       }
@@ -14997,10 +14997,8 @@
     if (initPTS === null) {
       return true;
     }
-    // InitPTS is invalid when distance from program would be more than segment duration or a minimum of one second
-    var minDuration = Math.max(duration, 1);
-    var startTime = startDTS - initPTS.baseTime / initPTS.timescale;
-    return Math.abs(startTime - timeOffset) > minDuration;
+    // disable this behavior to avoid lip-sync problem in low latency media
+    return false
   }
   function getParsedTrackCodec(track, type) {
     var parsedCodec = track == null ? void 0 : track.codec;
@@ -29242,7 +29240,7 @@
        * Get the video-dev/hls.js package version.
        */
       function get() {
-        return "1.5.14";
+        return "1.5.14-avoid-ll-hls-lipsync";
       }
     }, {
       key: "Events",
